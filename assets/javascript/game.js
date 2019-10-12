@@ -59,7 +59,7 @@ function resetGame(){
     targetScoreW.innerHTML = "Wins: " + wins;
     targetScoreL.innerHTML = "Lose: " + loss;
     targetGL.innerHTML = "Guesses Left: " + guessLeft;
-    targetGuessed.innerHTML = "Letters Guessed: "+ guessedLetters;
+    targetGuessed.innerHTML = "Letters Guessed: " + guessedLetters;
 }
 
 // MAIN PROCESS
@@ -73,14 +73,16 @@ dino = chooseWord();
 document.onkeyup = function(event){
     //captures key press, converts to lowercase, and saves
     var kp = event.key.toLowerCase();
+    // console.log('kp', kp);
+    if (kp !== "meta"){
+        //add user guess to guessedLetters array & print to screen
+        guessedLetters.push(kp);
+        targetGuessed.innerText= "Letters Guessed: "+ guessedLetters;
 
-    //add user guess to guessedLetters array & print to screen
-    guessedLetters.push(kp);
-    targetGuessed.innerHTML = "Letters Guessed: "+ guessedLetters;
-
-    //subtract 1 from guessLeft & print to screen
-    --guessLeft;
-    targetGL.innerHTML = "Guesses Left: " + guessLeft;
+        //subtract 1 from guessLeft & print to screen
+        --guessLeft;
+        targetGL.innerHTML = "Guesses Left: " + guessLeft;
+    }else{}
 
     //checks if kp is in the chosen word and replaces dash in guesslist array with kp value at the given index
     for (let index = 0; index < dino.length; index++) {
