@@ -66,7 +66,12 @@ document.onkeyup = function(event){
 
     //checks if kp is in the chosen word
     for (let index = 0; index < dino.length; index++) {
-        if(dino[index] === kp){ indices.push(index);}
+        if(dino[index] === kp){ 
+            guesslist[index] = kp;
+            // indices.push(index);
+        }
     }
-    console.log("instances of " + kp + " "+ indices);
+    targetGuess.innerHTML = guesslist.join(" ");
+    //console.log("instances of " + kp + " "+ indices);
+
 }
