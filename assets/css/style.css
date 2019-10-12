@@ -1,6 +1,10 @@
 body{
     background: url(../images/light-grey-terrazzo.png) repeat;
     /* background: url(../images/dino.jpg) repeat; */
+
+    font-family: 'Thasadith', sans-serif;
+    font-size: 30px;
+    line-height: 1em;
 }
 .container{
     display: flex;
@@ -9,18 +13,15 @@ body{
 }
 .gameName{
     display: flex;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     justify-content: center;
 }
 .gameName img{
     width: 50%;
     margin: 0px;
 }
+
 .instructions{
-    font-family: 'Thasadith', sans-serif;
-    font-size: 30px;
-    line-height: 1em;
-    
     display: flex;
     justify-content: center;
 }
