@@ -8,11 +8,14 @@ var dinos = ["tyrannosaurus rex", "apatosaurus", "velociraptor", "stegosaurus", 
 var wins = 0;
 var guessLeft = 10;
 
-//secret word to guess array
+//secret word to guess empty array
 var guesslist = [];
 
-//guessed letters array
+//guessed letters empty array
 var guessedLetters = [];
+
+//empty array for indices
+var indices = [];
 
 //grab id's of divs to write to
 var targetScore = document.getElementById("score");
@@ -46,21 +49,24 @@ targetGuessed.innerHTML = "Letters Guessed: "+ guessedLetters;
 //=================================
 
 //starts the game
-chooseWord();
+var dino = chooseWord();
 
 //looks for key press
 document.onkeyup = function(event){
     //captures key press, converts to lowercase, and saves
     var kp = event.key.toLowerCase();
 
-    //add user guess to guessedLetters array
+    //add user guess to guessedLetters array & print to screen
     guessedLetters.push(kp);
-
-    //print guessedLetters array to screen
     targetGuessed.innerHTML = "Letters Guessed: "+ guessedLetters;
 
-    //subtract 1 from guessLeft
+    //subtract 1 from guessLeft & print to screen
     --guessLeft;
     targetGL.innerHTML = "Guesses Left: " + guessLeft;
 
+    //checks if kp is in the chosen word
+    for (let index = 0; index < dino.length; index++) {
+        if(dino[index] === kp){ indices.push(index);}
+    }
+    console.log("instances of " + kp + " "+ indices);
 }
