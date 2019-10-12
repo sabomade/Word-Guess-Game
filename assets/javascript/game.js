@@ -2,7 +2,45 @@
 //=================================
 
 //array of secret words
-var dinos = ["tyrannosaurus rex", "apatosaurus", "velociraptor", "stegosaurus", "triceratops", "ankylosaurus", "saurolophus", "pteranodon"];
+//var dinos = ["tyrannosaurus rex", "apatosaurus", "velociraptor", "stegosaurus", "triceratops", "ankylosaurus", "saurolophus", "pteranodon"];
+
+var dinos = [];
+
+//object dinos - with name and image for each dino
+var dinosaurs=[
+    {
+        name:"tyrannosaurus rex",
+        pic:"../images/trex.png"
+    },
+    {
+        name:"apatosaurus",
+        pic:"../images/littlefoot.png"
+    },
+    {
+        name:"velociraptor",
+        pic:"../images/velociraptor.png"
+    },
+    {
+        name:"stegosaurus",
+        pic:"../images/steg.png"
+    },
+    {
+        name:"triceratops",
+        pic:"../images/cera.png"
+    },
+    {
+        name:"ankylosaurus",
+        pic:"../images/spike.png"
+    },
+    {
+        name:"saurolophus",
+        pic:"../images/ducky.jpg"
+    },
+    {
+        name:"pteranodon",
+        pic:"../images/petrie.png"
+    }
+]
 
 //secret word choice
 var dino = " ";
@@ -37,7 +75,7 @@ var targetGL = document.getElementById("guesses-left");
 //=================================
 
 //function that returns random dino from array dinos
-function chooseWord (){
+function chooseName (){
     const word = dinos[Math.floor(Math.random() * dinos.length)];
     console.log(word + " letters: " + word.length);
 
@@ -48,11 +86,19 @@ function chooseWord (){
     return word;
 }
 
+function chooseDino(){
+    for (let index = 0; index < dinosaurs.length; index++) {
+        dinos.push(dinosaurs[index].name);   
+    }
+    console.log("dino names: " + dinos);
+}
+
 function resetGame(){
     //resets variables
     guessLeft = 15;
     guesslist = [];
     guessedLetters = [];
+    dinos= [];
     count = 0;
 
     //print values on screen
@@ -67,7 +113,8 @@ function resetGame(){
 
 //starts the game
 resetGame();
-dino = chooseWord();
+chooseDino();
+dino = chooseName();
 
 //looks for key press
 document.onkeyup = function(event){
@@ -99,10 +146,12 @@ document.onkeyup = function(event){
     if (count === dino.length){
         wins++;
         resetGame();
-        dino = chooseWord();
+        chooseDino();
+        dino = chooseName();
     }else if (guessLeft < 1 && count !== dino.length){
         loss++;
         resetGame();
-        dino = chooseWord();
+        chooseDino();
+        dino = chooseName();
     }
 }
