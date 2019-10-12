@@ -65,7 +65,7 @@ var count = 0;
 //grab id's of divs to write to
 var targetScoreW = document.getElementById("scoreW");
 var targetScoreL = document.getElementById("scoreL");
-var targetphoto = document.getElementById("photo");
+var targetPic = document.getElementById("dino-pic");
 var targetGuess = document.getElementById("to-guess");
 var targetGuessed = document.getElementById("guessed-letters");
 var targetGL = document.getElementById("guesses-left");
@@ -79,6 +79,8 @@ function chooseName (){
     const word = dinos[Math.floor(Math.random() * dinos.length)];
     console.log(word + " letters: " + word.length);
 
+    //console.log("index of dinoName: " + dinos.indexOf(word));
+
     for (let index = 0; index < word.length; index++) {
         guesslist.push(" _ ");  
     }
@@ -86,11 +88,19 @@ function chooseName (){
     return word;
 }
 
+function chooseImg(x){
+    // targetPic.parentNode.removeChild(targetPic);
+    var img = document.createElement("img");
+    img.setAttribute("src", dinosaurs.indexOf(x).pic);
+    console.log( "src: " + dinosaurs.indexOf(x).pic);
+    document.getElementById("dino-pic").append(img);
+}
+
 function chooseDino(){
     for (let index = 0; index < dinosaurs.length; index++) {
         dinos.push(dinosaurs[index].name);   
     }
-    console.log("dino names: " + dinos);
+    // console.log("dino names: " + dinos);
 }
 
 function resetGame(){
@@ -115,6 +125,7 @@ function resetGame(){
 resetGame();
 chooseDino();
 dino = chooseName();
+chooseImg(dino);
 
 //looks for key press
 document.onkeyup = function(event){
@@ -148,10 +159,12 @@ document.onkeyup = function(event){
         resetGame();
         chooseDino();
         dino = chooseName();
+        chooseImg(dino);
     }else if (guessLeft < 1 && count !== dino.length){
         loss++;
         resetGame();
         chooseDino();
         dino = chooseName();
+        chooseImg(dino);
     }
 }
