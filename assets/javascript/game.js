@@ -4,46 +4,49 @@
 //array of secret words
 //var dinos = ["tyrannosaurus rex", "apatosaurus", "velociraptor", "stegosaurus", "triceratops", "ankylosaurus", "saurolophus", "pteranodon"];
 
-var dinos = [];
-
 //object dinos - with name and image for each dino
 var dinosaurs=[
     {
         name:"tyrannosaurus rex",
-        pic:"../images/trex.png"
+        pic:"assets/images/trex.png"
     },
     {
         name:"apatosaurus",
-        pic:"../images/littlefoot.png"
+        pic:"assets/images/littlefoot.png"
     },
     {
         name:"velociraptor",
-        pic:"../images/velociraptor.png"
+        pic:"assets/images/velociraptor.png"
     },
     {
         name:"stegosaurus",
-        pic:"../images/steg.png"
+        pic:"assets/images/steg.png"
     },
     {
         name:"triceratops",
-        pic:"../images/cera.png"
+        pic:"assets/images/cera.png"
     },
     {
         name:"ankylosaurus",
-        pic:"../images/spike.png"
+        pic:"assets/images/spike.png"
     },
     {
         name:"saurolophus",
-        pic:"../images/ducky.jpg"
+        pic:"assets/images/ducky.jpg"
     },
     {
         name:"pteranodon",
-        pic:"../images/petrie.png"
+        pic:"assets/images/petrie.png"
     }
 ]
+//empty array to hold all dinosaurs.name values
+var dinos = [];
+
+//variable to hold chosen dinosaur object index
+var chosenDinoIndex = 0;
 
 //secret word choice
-var dino = " ";
+var dinoName = " ";
 
 //score variables
 var wins = 0;
@@ -80,6 +83,8 @@ function chooseName (){
     console.log(word + " letters: " + word.length);
 
     //console.log("index of dinoName: " + dinos.indexOf(word));
+    //saves index of choosen dinosaurs.name
+    chosenDinoIndex = dinos.indexOf(word);
 
     for (let index = 0; index < word.length; index++) {
         guesslist.push(" _ ");  
@@ -88,12 +93,14 @@ function chooseName (){
     return word;
 }
 
-function chooseImg(x){
-    // targetPic.parentNode.removeChild(targetPic);
+function chooseImg(){
+    // console.log("chosenDinoIndex: " + chosenDinoIndex);
+    // console.log("dinosaurs[chosenDinoIndex].pic: " + dinosaurs[chosenDinoIndex].pic);
     var img = document.createElement("img");
-    img.setAttribute("src", dinosaurs.indexOf(x).pic);
-    console.log( "src: " + dinosaurs.indexOf(x).pic);
-    document.getElementById("dino-pic").append(img);
+    img.setAttribute("src", dinosaurs[chosenDinoIndex].pic);
+    img.setAttribute("class", "dinoPic");
+    targetPic.append(img);
+    targetPic.replaceChild(img, targetPic.children[0]);
 }
 
 function chooseDino(){
@@ -109,6 +116,7 @@ function resetGame(){
     guesslist = [];
     guessedLetters = [];
     dinos= [];
+    chosenDino = [];
     count = 0;
 
     //print values on screen
@@ -124,8 +132,8 @@ function resetGame(){
 //starts the game
 resetGame();
 chooseDino();
-dino = chooseName();
-chooseImg(dino);
+dinoName = chooseName();
+chooseImg();
 
 //looks for key press
 document.onkeyup = function(event){
@@ -135,7 +143,7 @@ document.onkeyup = function(event){
     if (kp !== "meta"){
         //add user guess to guessedLetters array & print to screen
         guessedLetters.push(kp);
-        targetGuessed.innerText= "Letters Guessed: "+ guessedLetters;
+        targetGuessed.innerHTML= "Letters Guessed: "+"<br />"+ guessedLetters;
 
         //subtract 1 from guessLeft & print to screen
         --guessLeft;
@@ -143,8 +151,8 @@ document.onkeyup = function(event){
     }else{}
 
     //checks if kp is in the chosen word and replaces dash in guesslist array with kp value at the given index
-    for (let index = 0; index < dino.length; index++) {
-        if(dino[index] === kp){ 
+    for (let index = 0; index < dinoName.length; index++) {
+        if(dinoName[index] === kp){ 
             guesslist[index] = kp;
             count++;
             // indices.push(index);
@@ -154,17 +162,17 @@ document.onkeyup = function(event){
     targetGuess.innerHTML = guesslist.join(" ");
     //console.log("instances of " + kp + " "+ indices);
 
-    if (count === dino.length){
+    if (count === dinoName.length){
         wins++;
         resetGame();
         chooseDino();
-        dino = chooseName();
-        chooseImg(dino);
-    }else if (guessLeft < 1 && count !== dino.length){
+        dinoName = chooseName();
+        chooseImg();
+    }else if (guessLeft < 1 && count !== dinoName.length){
         loss++;
         resetGame();
         chooseDino();
-        dino = chooseName();
-        chooseImg(dino);
+        dinoName = chooseName();
+        chooseImg();
     }
 }
