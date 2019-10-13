@@ -65,6 +65,9 @@ var indices = [];
 //counter for # of times keypress was added to guesslist
 var count = 0;
 
+//counter for switch case - wsa page refreshed with cmd-r
+var refresh = 0;
+
 //grab id's of divs to write to
 var targetScoreW = document.getElementById("scoreW");
 var targetScoreL = document.getElementById("scoreL");
@@ -139,8 +142,17 @@ chooseImg();
 document.onkeyup = function(event){
     //captures key press, converts to lowercase, and saves
     var kp = event.key.toLowerCase();
+    
+    //console.log("key code: " + event.which + " key: "+ kp);
+
+    // [91,82] cmd-r key press
+    switch (event.key){
+        case "meta": refresh++;
+        case "82": refresh++;
+    }
+
     // console.log('kp', kp);
-    if (kp !== "meta"){
+    if (kp !== "meta" && refresh !== 2){
         //add user guess to guessedLetters array & print to screen
         guessedLetters.push(kp);
         targetGuessed.innerHTML= "Letters Guessed: "+"<br />"+ guessedLetters;
