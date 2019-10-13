@@ -2,9 +2,9 @@ body{
     background: url(../images/light-grey-terrazzo.png) repeat;
     /* background: url(../images/dino.jpg) repeat; */
 
-    font-family: 'Thasadith', sans-serif;
+    /* font-family: 'Thasadith', sans-serif;
     font-size: 30px;
-    line-height: 1em;
+    line-height: 1em; */
 }
 .container{
     display: flex;
@@ -37,4 +37,53 @@ body{
 .dinoPic{
     width: 50%;
     margin: 30px auto;
+}
+
+.boxText{
+    font-family: 'Thasadith', sans-serif;
+    font-size: 30px;
+    line-height: 1em;
+}
+
+@media screen and (max-width: 980px){
+    .dinoPic {
+        width: 50%;
+        margin: 10px auto;
+    }
+    .gameName img {
+        width: 75%;
+        margin: 0px;
+    }
+    .boxText{
+        font-size: 26px;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .dinoPic {
+        width: 50%;
+        margin: 10px auto;
+    }
+    .gameName img {
+        width: 50%;
+        margin: 0px;
+    }
+    .boxText{
+        font-size: 22px;
+    }
+}
+
+
+@media screen and (max-width: 640px){
+    .dinoPic {
+        width: 35%;
+        margin: 10px auto;
+    }
+    .gameName img {
+        width: 70%;
+        margin: 0px;
+    }
+    .boxText{
+        font-size: 26px;
+    }
 }
