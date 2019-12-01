@@ -1,7 +1,7 @@
 # Word-Guess-Game
 A simple word guess game, dino-themed
 
-![Image of Word Guess Game](assets/img/worrd-guess.png)
+![Image of Word Guess Game](assets/imgages/worrd-guess.png)
 
 ### How to Play
 Type any letter to begin. You have 15 tries to correctly guess the type of dinosaur. When you win or lose your score is updated, the game is an endless loop.
