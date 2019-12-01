@@ -1,5 +1,5 @@
 # Word-Guess-Game
-A simple word guess game, dino-themed
+A simple word guess game, dino-themed. Interactive web app, dynamically updated HTML & CSS based on javascript.
 
 ![Image of Word Guess Game](assets/images/word-guess2.png)
 
